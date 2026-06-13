@@ -1,15 +1,13 @@
 import app from "./app";
-import { envVars } from "./app/config/env";
 
 const bootstrap = () => {
     try {
-        app.listen(envVars.PORT, () => {
-            console.log(`Server is running on http://localhost:${envVars.PORT}`);
-            console.log(`Press CTRL + C to stop the server`, envVars.PORT,  envVars.NODE_ENV, envVars.DATABASE_URL);
-        });
-    } catch (error) {
+        app.listen(5000, () => {
+            console.log(`Server is running on http://localhost:5000`);
+        });  // ← Missing closing parenthesis and semicolon for listen()
+    } catch (error) {  // ← catch was inside the callback (wrong placement)
         console.error('Failed to start server:', error);
     }
-}
+};
 
 bootstrap();
